@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugging Face Models</title>
+</head>
+<body>
+    <h1>Hugging Face Models Interaction</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="text_input">Text Input:</label>
+        <input type="text" name="text_input" required>
+        <br>
+        <br>
+        <br>
+
+        <label for="audio_input">Audio Input:</label>
+        <input type="text" name="audio_input" required>
+        <br>
+        <br>
+        <br>
+
+        <label for="image_file">Image File (for Vision Model):</label>
+        <input type="file" name="image_file">
+        <br>
+        <br>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if user_input %}
+        <h2>Input:</h2>
+        <p>{{ user_input }}</p>
+
+        <h2>NLP Model Output:</h2>
+        <pre>{{ nlp_model_output | safe }}</pre>
+
+        <h2>Audio Model Output:</h2>
+        <pre>{{ audio_model_output | safe }}</pre>
+
+        <h2>Vision Model Output:</h2>
+        <pre>{{ vision_model_output | safe }}</pre>
+    {% endif %}
+</body>
+</html>
